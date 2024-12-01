@@ -1,4 +1,2 @@
-# league-red-vs-blue
-
-# testing!
-# red spy in the base!
+# Predicting match outcomes in League of Legends
+Ryan Tang
