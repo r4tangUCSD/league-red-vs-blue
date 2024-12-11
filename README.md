@@ -33,7 +33,6 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 | killsat10          | Number of kills by at 10 minutes        |
 | totalgold          | Total gold earned at the end of the game |
 | kills              | Total number of kills at the end of the game    |
-| deaths             | Total number of deaths at the end of the game   |
 | gamelength         | Duration of the game in seconds                  |
 | league             | The league in which the game took place (e.g., LCS, LEC, etc.) |
 | datacompleteness   | Indicates whether the data for the game is complete|
@@ -46,19 +45,28 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 
 ***Data cleaning***
 
-Describe, in detail, the data cleaning steps you took and how they affected your analyses. The steps should be explained in reference to the data generating process. Show the head of your cleaned DataFrame (see Part 2: Report for instructions).
+First, I begin my data cleaning process by only keeping the relevant columns listed above. Later in this project, I use the columns "goldat10" and "killsat10" to help predict the result of a match. Because of this, it doesn't make sense to keep entries that last less than 10 minutes, so I filter those rows out using the "gamelength" column. As mentioned, earlier, this dataset includes rows the correspond to players and rows that correspond to whole teams. These different kinds of entries have different types of data encoded in them, so the next step I perform is to separate my data into two dataframes: "players" and "teams."
+
+Next, I examine each column for missingness. I find that most columns don't have any missing values, save for a few:
+-the columns pick1-pick5 occasionaly have NaN values. When this happens, an entire team's picks are all gone. I dropped these columns, since there weren't many.
+-similarly, the ban1-ban5 columns occasionally have NaN values, but this time it doesn't make sense to remove them because players can choose not to ban a champion in any given match.
+-the goldat10 and killsat10 columns have missing values. I explore this more in depth in part 3.
+
+Below are the heads of both the "players" dataframe and the "teams" dataframe.
 
 ***Univariate Analysis***
 
-Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one univariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
+I performed univariate analysis on the distributions of a few columns. For example, here's a historgram I created that shows the the distribution of total kills. This data is from the "teams" dataframe, so each value represents the cumulative number of kills all 5 players on a team got.
+
+We see that this distribution is unimodal and looks relatively normal. It is slightly right skewed, which makes sense because if a match lasts a very long time, players will have more kills at the end.
 
 ***Bivariate Analysis***
 
-Embed at least one plotly plot that displays the relationship between two columns. Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that’s fine. Feel free to embed more than one bivariate visualization in your website if you’d like, but make sure that each embedded plot is accompanied by a description.)
+In this scatterplot I plot each champion's pickrate with their banrate. Before, I theorized that if a champion is very powerful, it will have both a high pickrate (because teams want to uitilize this champion) and a high banrate (because teams don't want to deal with a powerful opponent). Here we see that banrate and pickrate are, indeed, positively correlated.
 
 ***Interesting Aggregates***
 
-Embed at least one grouped table or pivot table in your website and explain its significance.
+The arena that League of Legends matches takes place in, "Summoner's Rift," is mostly symmetrical; however, there are a few key differences that could give one side a hypothetical advantage over another. My good friend Parker, a league fanatic, tells me that the Blue side, which starts in the southwest portion of the arena, has a better chance of winning compared to the Red side, which starts in the north eastern corner.
 
 ---
 
