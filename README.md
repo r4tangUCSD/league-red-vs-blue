@@ -158,19 +158,27 @@ My baseline model uses Logistic Regression. These are the features in the baseli
 
 -"killsat10:" A quantative variable. In League of Legends, kills temporarily take enemy champions out of the game and also awards a player bonus gold. Like "goldat10", this variable probably also is correlated with 'result.'
 
- Report the performance of your model and whether or not you believe your current model is “good” and why.
-
-Tip: Make sure to hit all of the points above: many projects in the past have lost points for not doing so.
+Baseline Model Accuracy: 0.6337142857142857, which is better than blindly guessing but not good enough to make meaningful predictions.
 
 ---
 
 ## Final Model
 
-State the features you added and why they are good for the data and prediction task. Note that you can’t simply state “these features improved my accuracy”, since you’d need to choose these features and fit a model before noticing that – instead, talk about why you believe these features improved your model’s performance from the perspective of the data generating process.
+My final model employed a RandomForestClassifier() instead of LogisticRegression(). In addition to the features in the bassline model, all of which I kept without modifying, my final model had two more features:
 
-Describe the modeling algorithm you chose, the hyperparameters that ended up performing the best, and the method you used to select hyperparameters and your overall model. Describe how your Final Model’s performance is an improvement over your Baseline Model’s performance.
+-"Average champ winrate and average champ pickrate:" Two quantitative variables. I knew from the beginning I wanted to include the champion picks into the prediction because they were a key element of the game that can heavily influence whether a team wins or not. Picking strong champions and creating synergistic team compositions should set a team up for success. Even though in theory, this should justify using champion picks as a feature, in practice, they weren't as effective as I'd hoped. I greatly struggled in encoding champion pick data efficiently and getting meaningful results. In the end, I don't think that any of the numorous encoding methods I tried (such has OneHotEncoding() every champion - which led to 160+ columns) had a super big effect on accuracy of model. My final model first extracts the average winrate and pickrate of each champion using data from the "players" database. It takes in the 5 champions that a team picked and maps each champion to it's corresponding winrate and pickrate. Then, it averages out both values, resulting in two numbers that represent how often (on average) these champions are picked and played. I implemented this with a custom function and a FunctionTransformer().
 
-Optional: Include a visualization that describes your model’s performance, e.g. a confusion matrix, if applicable.
+-"Team winrate:" Another quantitative variable similar to the one above. I used data from the "teams" dataframe to create a list of winrates for each team that competed in 2024. Then, I mapped the "teamname" column to its corresponding winrate using a custom function and a FunctionTransformer(). I thought this feature would help predict the outcome of a match because if a team historically performs better than other teams, they're more likely to win any given match.
+
+To find the best hyperparameters for the random forest, I used a GridSearchCV with 5-fold cross validation
+The hyperparameters that worked the best were:
+    'model__max_depth': 10
+    'model__min_samples_leaf': 15
+    'model__min_samples_split': 20
+    'model__n_estimators': 150
+
+
+In the end, my model only made marginal improvements.
 
 ---
 
