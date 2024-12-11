@@ -38,7 +38,7 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 | league             | The league in which the game took place (e.g., LCS, LEC, etc.) |
 | datacompleteness   | Indicates whether the data for the game is complete|
 
-  
+
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
