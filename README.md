@@ -9,7 +9,7 @@ League of Legends is a multiplayer online battle arena (MOBA) that is widely con
 
 League of Legends is also the world's biggest esport. International and regional leagues and tournaments are held every year; these events sell out stadiums and attract hundreds of millions of livestream viewers. In this project, I'll be analyzing match data from many different leagues through 2024. This data was provided by Oracle's Elixir (https://oracleselixir.com/tools/downloads). With this data, I aim to predict whether a given team will win or lose a match using only pre-game and early-game statistics. Through this process, I explore which factors most greatly affect the outcome of a match.
 
-The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total matches. Each match has 12 entries corresponding to it - 10 for each player in the match, and 2 for each team's aggregate statistics. 
+The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total matches. Each match has 12 entries corresponding to it - 10 for each player in the match, and 2 for each team's aggregate statistics. Some of these columns (such as "champion") are only relevant for entries about individual players. Others, like "pick(1-5)," are only relevant for whole teams.
 
 | Column Name        | Description                                      |
 |--------------------|--------------------------------------------------|
@@ -24,7 +24,7 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 | pick3              | Third champion pick by the team                  |
 | pick4              | Fourth champion pick by the team                 |
 | pick5              | Fifth champion pick by the team                  |
-| ban1               | First champion ban by the team                   |
+| ban1*              | First champion ban by the team                   |
 | ban2               | Second champion ban by the team                  |
 | ban3               | Third champion ban by the team                   |
 | ban4               | Fourth champion ban by the team                  |
@@ -38,6 +38,7 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 | league             | The league in which the game took place (e.g., LCS, LEC, etc.) |
 | datacompleteness   | Indicates whether the data for the game is complete|
 
+\* In professional league matches, before players start picking their champions, they get to ban champions they don't want their enemies to pick. Each player can ban one champion - that's why teams have 5 champion picks and 5 bans.
 
 ---
 
