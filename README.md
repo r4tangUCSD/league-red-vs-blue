@@ -150,7 +150,15 @@ To evaluate my model, I chose accuracy as a suitable metric. My dataset has equa
 
 ## Baseline Model
 
-Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
+My baseline model uses Logistic Regression. These are the features in the baseline model:
+
+-"side:" A nominal variable that is either red or blue. As explored earlier, the blue side is more likely to win, so I include it as a feature that could help predict a team's victory. Since this a nominal variable, i use OneHotEncoder().
+
+-"goldat10:" A quantative variable. A team in League of Legends needs money to buy items and upgrade their champion's stats. If a team has a lot of gold early on in a game, it follows that they'll probably have more resources to help them win.
+
+-"killsat10:" A quantative variable. In League of Legends, kills temporarily take enemy champions out of the game and also awards a player bonus gold. Like "goldat10", this variable probably also is correlated with 'result.'
+
+ Report the performance of your model and whether or not you believe your current model is “good” and why.
 
 Tip: Make sure to hit all of the points above: many projects in the past have lost points for not doing so.
 
