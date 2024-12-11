@@ -109,7 +109,7 @@ P-value: 0.529
 
 We fail to reject the null hypothesis, since the p-value > 0.05.
 
-*Imputing missing values*
+*Imputing missing values:* 
 To account for the missing goldat10 and killsat10 columns, I impute them using the related "totalgold" and "kills" columns. I find the average ratio between goldat10 and totalgold, and use it to estimate missing goldat10 values with their totalgold values. I use the same method to impute "killsat10"
 
 ```py
