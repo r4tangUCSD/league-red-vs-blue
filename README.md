@@ -104,7 +104,10 @@ The arena that League of Legends matches takes place in, "Summoner's Rift," is m
 
 To explore this, I group the data by the "side" column and see if there's truth to my friend's rumor:
 
-|   killsat10 |   kills |   goldat10 |   totalgold |   result |\n|------------:|--------:|-----------:|------------:|---------:|\n|     2.28245 | 15.3015 |    16041.8 |     58920.2 | 0.530514 |\n|     2.17838 | 14.6691 |    15888   |     58169.2 | 0.469486 |
+|   killsat10 |   kills |   goldat10 |   totalgold |   result |
+|------------:|--------:|-----------:|------------:|---------:|
+|     2.28245 | 15.3015 |    16041.8 |     58920.2 | 0.530514 |
+|     2.17838 | 14.6691 |    15888   |     58169.2 | 0.469486 |
 
 It turns out he's right: the Blue side gets (on average), more kills, more gold, and has an overall higher winrate. I explore this further in Part 4.
 
