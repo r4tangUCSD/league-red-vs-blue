@@ -52,6 +52,8 @@ Next, I examine each column for missingness. I find that most columns don't have
 -similarly, the ban1-ban5 columns occasionally have NaN values, but this time it doesn't make sense to remove them because players can choose not to ban a champion in any given match.
 -the goldat10 and killsat10 columns have missing values. I explore this more in depth in part 3.
 
+Lastly, I create a column "picks" in the teams dataframe which contains the same information as columns "pick(1-5)." I do this soley for my own convenience - in certain situations it is easy for me to perform transformations a column of lists rather than 5 separate columns.
+
 Below are the heads of both the "players" dataframe and the "teams" dataframe.
 
 ***Univariate Analysis***
@@ -94,39 +96,55 @@ Alternate Hypothesis: The distribution of "league" column is different when gold
 Observed TVD: 0.98498801564274
 P-value: 0.0
 
-We reject the null hypothesis, since the p-value < 0.5. It is likely unlikely that every league has the same amount of missing values in the goldat10 column.
+We reject the null hypothesis, since the p-value < 0.05. It is likely unlikely that every league has the same amount of missing values in the goldat10 column.
+
+*Result*
+
+Null Hypothesis: The "result" values (win/loss) are the same regardless of whether "goldat10" is missing or not.
+
+Alternative Hypothesis: The "result" values (win/loss) differ depending on whether "goldat10" is missing or not.
+
+Observed TVD: 0.0
+P-value: 0.529
+
+We fail to reject the null hypothesis, since the p-value > 0.05.
+
+*Imputing missing values*
+To account for the missing goldat10 and killsat10 columns, I impute them using the related "totalgold" and "kills" columns. I find the average ratio between goldat10 and totalgold, and use it to estimate missing goldat10 values with their totalgold values. I use the same method to impute "killsat10"
 
 ```py
 print(counts[['Quarter', 'Count']].head().to_markdown(index=False))
 ```
 
-| Quarter     |   Count |
-|:------------|--------:|
-| Fall 2020   |       3 |
-| Winter 2021 |       2 |
-| Spring 2021 |       6 |
-| Summer 2021 |       4 |
-| Fall 2021   |      55 |
-
 ---
 
 ## Hypothesis Testing
 
-Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
-p
--value, and your conclusion. Justify why these choices are good choices for answering the question you are trying to answer.
+Null Hypothesis: On average, the average number of blue side kills is equal to the average number of red side kills
 
-Optional: Embed a visualization related to your hypothesis test in your website.
+Alternate Hypothesis: On average, the average number of blue side kills is greater than the average number of red side kills
 
-Tip: When making writing your conclusions to the statistical tests in this project, never use language that implies an absolute conclusion; since we are performing statistical tests and not randomized controlled trials, we cannot prove that either hypothesis is 100% true or false.
+Test Statistic: Difference of means: mean number of blue side kills - mean number of red side kills.
+
+I perform a permutation tests because we want to explore whether the two sides come from the same distribution.
+
+Observed Difference in Means: 0.6323428571428575
+
+P-value: 0.0
+
+We reject the null hypothesis, since the p-value < 0.05. We conclude that the average number of blue side kills is higher than the average number of red side kills.
+
 
 ---
 
 ## Framing a Prediction Problem
 
-Clearly state your prediction problem and type (classification or regression). If you are building a classifier, make sure to state whether you are performing binary classification or multiclass classification. Report the response variable (i.e. the variable you are predicting) and why you chose it, the metric you are using to evaluate your model and why you chose it over other suitable metrics (e.g. accuracy vs. F1-score).
+My goal is predict the result of a match given only pre-game and early-game data about a team. This is a binary classification problem since there are only two outcomes: win and lose. It follows that the response variable I am trying to predict is the "result" column, where wins are represented with 1 and losses are represented with 0.
 
-Note: Make sure to justify what information you would know at the “time of prediction” and to only train your model using those features. For instance, if we wanted to predict your final exam grade, we couldn’t use your Final Project grade, because the project is only due after the final exam! Feel free to ask questions if you’re not sure.
+Since I'm trying to predict the outcome of a match before it ends, I give myself only information I would have access to 10 minutes into a match. This means I can use columns like "goldat10" and "killsat10", but not match statistics from the end of a match, like "totalgold" and "kills." I also use information from before the match starts, such as "teamname" and the champions picks ("pick1" - "pick5").
+
+To evaluate my model, I chose accuracy as a suitable metric. My dataset has equal numbers of positive and negative examples: for every team that wins, another team has lost. Since classes aren't imbalanced at all, accuracy won't be as misleading as it might be in other cases. Accuracy is also simple to interpret.
+
 
 ---
 
