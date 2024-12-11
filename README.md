@@ -7,16 +7,38 @@ by Ryan Tang (r4tang@ucsd.edu)
 
 League of Legends is a multiplayer online battle arena (MOBA) that is widely considered one of the greatest games of all time. In a match of league of legends, two teams of five players battle to fight past their opponents' defenses and destroy the enemy "Nexus." To do this, each player collects gold, buys items, and fights both monsters and other players. Each player controls a unique "champion," each with their own unique skill and abilities. As of December 2024, there are 169 champions released. 
 
-League of Legends is also the world's biggest esport. International and regional leagues and tournaments are held every year; these events sell out stadiums and attract hundreds of millions of livestream viewers. In this project, I'll be analyzing match data from many different leagues through 2024. This data was provided by Oracle's Elixir (https://oracleselixir.com/tools/downloads). With this data, I aim to predict whether a given team will win or lose a match using only pre-game and early-game statistics.
+League of Legends is also the world's biggest esport. International and regional leagues and tournaments are held every year; these events sell out stadiums and attract hundreds of millions of livestream viewers. In this project, I'll be analyzing match data from many different leagues through 2024. This data was provided by Oracle's Elixir (https://oracleselixir.com/tools/downloads). With this data, I aim to predict whether a given team will win or lose a match using only pre-game and early-game statistics. Through this process, I explore which factors most greatly affect the outcome of a match.
 
+The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total matches. Each match has 12 entries corresponding to it - 10 for each player in the match, and 2 for each team's aggregate statistics. 
 
+| Column Name        | Description                                      |
+|--------------------|--------------------------------------------------|
+| gameid             | Unique identifier for each game                  |
+| teamname           | The name of the team playing the game            |
+| side               | Side of the team in the game (blue or red)       |
+| playername         | Username of the player                |
+| result             | Outcome of the game (win or loss)                |
+| champion           | Champion picked by a player                 |
+| pick1              | First champion pick by the team                  |
+| pick2              | Second champion pick by the team                 |
+| pick3              | Third champion pick by the team                  |
+| pick4              | Fourth champion pick by the team                 |
+| pick5              | Fifth champion pick by the team                  |
+| ban1               | First champion ban by the team                   |
+| ban2               | Second champion ban by the team                  |
+| ban3               | Third champion ban by the team                   |
+| ban4               | Fourth champion ban by the team                  |
+| ban5               | Fifth champion ban by the team                   |
+| goldat10           | Total gold earned by at 10 minutes      |
+| killsat10          | Number of kills by at 10 minutes        |
+| totalgold          | Total gold earned at the end of the game |
+| kills              | Total number of kills at the end of the game    |
+| deaths             | Total number of deaths at the end of the game   |
+| gamelength         | Duration of the game in seconds                  |
+| league             | The league in which the game took place (e.g., LCS, LEC, etc.) |
+| datacompleteness   | Indicates whether the data for the game is complete|
 
-
-Provide an introduction to your dataset, and clearly state the one question your project is centered around. Why should readers of your website care about the dataset and your question specifically? 
-
-
-Report the number of rows in the dataset, the names of the columns that are relevant to your question, and descriptions of those relevant columns.
-
+  
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
