@@ -126,7 +126,7 @@ Alternate Hypothesis: On average, the average number of blue side kills is great
 
 Test Statistic: Difference of means: mean number of blue side kills - mean number of red side kills.
 
-I perform a permutation tests because we want to explore whether the two sides come from the same distribution.
+I perform a permutation test because I want to explore whether the two sides come from the same distribution.
 
 Observed Difference in Means: 0.6323428571428575
 
@@ -178,16 +178,45 @@ The hyperparameters that worked the best were:
     'model__n_estimators': 150
 
 
-In the end, my model only made marginal improvements.
+In the end, my model only made marginal improvements:
+
+Best Cross-Validation Score: 0.6720714285714287
+
+Final accuracy: 0.678
+
+The fact that this model didn't improve that much could mean a few things. First, it might mean that I haven't yet found a way to effectively encode the champion pick data as a feature. Perhaphs there is more pre-game and early-game match data, like "first_blood" (the team that gets the first kill), that could aid in predicting the result. It could also mean that, at the highest levels of professional League of Legends, that players are skilled enough to often turn the tide of a losing game. Perhaphs professional esports players have the agency and game knowledge to make effective comebacks and counter strong champions, which would make our features less impactful in predicting the result of a match.
 
 ---
 
 ## Fairness Analysis
 
-Clearly state your choice of Group X and Group Y, your evaluation metric, your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
-p
--value, and your conclusion.
+League of Legends has 5 "tier one" regional professional leagues: 
 
-Optional: Embed a visualization related to your permutation test in your website.
+| Abbreviation       | League                                     |
+|--------------------|--------------------------------------------------|
+| LCK            | League of Legends Champions Korea	             |
+| LPL           | League of Legends Pro League           |
+| LEC               | League of Legends EMEA Championship         |
+| LTA         | League of Legends Championship of The Americas  |
+| LCP             | Outcome of the game (win or loss)                |
 
+I'm interested in whether or not my model performs better for tier one matches compared to all other leagues.
+
+Null Hypothesis: Our model is fair. Its precision for tier one matches and other matches are roughly the same, and any differences are due to random chance.
+
+Alternative Hypothesis: Our model is unfair. Its precision for tier one matches is higher than its precision for other matches.
+
+Test statistic: other_precision - t1_precision. I guessed tier one teams would have better predictions because maybe the highest level of play had the most consistent factors. Contrary to my belief, the other leagues had a slightly higher precision.
+
+Tier-One Precision: 0.7150127226463104
+
+Other Leagues Precision: 0.7303229414231791
+
+Observed Precision Difference: 0.015310218776868667
+
+I perform a permutation test because I want to see if the model predicts as though these two groups come from the same distribution.
+
+P-value: 0.106
+
+We fail to reject the null hypothesis.
 
