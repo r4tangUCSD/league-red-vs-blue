@@ -1,12 +1,21 @@
-# Predicting match outcomes in League of Legends
+# Predicting victories in League of Legends
 by Ryan Tang (r4tang@ucsd.edu)
-***Note***: If you choose a repo name and title as uninspired as the ones here, I will be quite sad.
 
 ---
 
 ## Introduction
 
-Provide an introduction to your dataset, and clearly state the one question your project is centered around. Why should readers of your website care about the dataset and your question specifically? Report the number of rows in the dataset, the names of the columns that are relevant to your question, and descriptions of those relevant columns.
+League of Legends is a multiplayer online battle arena (MOBA) that is widely considered one of the greatest games of all time. In a match of league of legends, two teams of five players battle to fight past their opponents' defenses and destroy the enemy "Nexus." To do this, each player collects gold, buys items, and fights both monsters and other players. Each player controls a unique "champion," each with their own unique skill and abilities. As of December 2024, there are 169 champions released. 
+
+League of Legends is also the world's biggest esport. International and regional leagues and tournaments are held every year; these events sell out stadiums and attract hundreds of millions of livestream viewers. In this project, I'll be analyzing match data from many different leagues through 2024. This data was provided by Oracle's Elixir (https://oracleselixir.com/tools/downloads). With this data, I aim to predict whether a given team will win or lose a match using only pre-game and early-game statistics.
+
+
+
+
+Provide an introduction to your dataset, and clearly state the one question your project is centered around. Why should readers of your website care about the dataset and your question specifically? 
+
+
+Report the number of rows in the dataset, the names of the columns that are relevant to your question, and descriptions of those relevant columns.
 
 ---
 
