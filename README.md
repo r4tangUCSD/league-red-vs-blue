@@ -35,7 +35,6 @@ The raw dataset has 116124 entries and 161 columns, corresponding to 9667 total 
 | kills              | Total number of kills at the end of the game    |
 | gamelength         | Duration of the game in seconds                  |
 | league             | The league in which the game took place (e.g., LCS, LEC, etc.) |
-| datacompleteness   | Indicates whether the data for the game is complete|
 
 \* In professional league matches, before players start picking their champions, they get to ban champions they don't want their enemies to pick. Each player can ban one champion - that's why teams have 5 champion picks and 5 bans.
 
@@ -112,10 +111,6 @@ We fail to reject the null hypothesis, since the p-value > 0.05.
 *Imputing missing values:* 
 To account for the missing goldat10 and killsat10 columns, I impute them using the related "totalgold" and "kills" columns. I find the average ratio between goldat10 and totalgold, and use it to estimate missing goldat10 values with their totalgold values. I use the same method to impute "killsat10"
 
-```py
-print(counts[['Quarter', 'Count']].head().to_markdown(index=False))
-```
-
 ---
 
 ## Hypothesis Testing
@@ -152,11 +147,11 @@ To evaluate my model, I chose accuracy as a suitable metric. My dataset has equa
 
 My baseline model uses Logistic Regression. These are the features in the baseline model:
 
--"side:" A nominal variable that is either red or blue. As explored earlier, the blue side is more likely to win, so I include it as a feature that could help predict a team's victory. Since this a nominal variable, i use OneHotEncoder().
+-"*side*:" A nominal variable that is either red or blue. As explored earlier, the blue side is more likely to win, so I include it as a feature that could help predict a team's victory. Since this a nominal variable, i use OneHotEncoder().
 
--"goldat10:" A quantative variable. A team in League of Legends needs money to buy items and upgrade their champion's stats. If a team has a lot of gold early on in a game, it follows that they'll probably have more resources to help them win.
+-"*goldat10*:" A quantative variable. A team in League of Legends needs money to buy items and upgrade their champion's stats. If a team has a lot of gold early on in a game, it follows that they'll probably have more resources to help them win.
 
--"killsat10:" A quantative variable. In League of Legends, kills temporarily take enemy champions out of the game and also awards a player bonus gold. Like "goldat10", this variable probably also is correlated with 'result.'
+-"*killsat10*:" A quantative variable. In League of Legends, kills temporarily take enemy champions out of the game and also awards a player bonus gold. Like "goldat10", this variable probably also is correlated with 'result.'
 
 Baseline Model Accuracy: 0.6337142857142857, which is better than blindly guessing but not good enough to make meaningful predictions.
 
@@ -166,15 +161,23 @@ Baseline Model Accuracy: 0.6337142857142857, which is better than blindly guessi
 
 My final model employed a RandomForestClassifier() instead of LogisticRegression(). In addition to the features in the bassline model, all of which I kept without modifying, my final model had two more features:
 
--"Average champ winrate and average champ pickrate:" Two quantitative variables. I knew from the beginning I wanted to include the champion picks into the prediction because they were a key element of the game that can heavily influence whether a team wins or not. Picking strong champions and creating synergistic team compositions should set a team up for success. Even though in theory, this should justify using champion picks as a feature, in practice, they weren't as effective as I'd hoped. I greatly struggled in encoding champion pick data efficiently and getting meaningful results. In the end, I don't think that any of the numorous encoding methods I tried (such has OneHotEncoding() every champion - which led to 160+ columns) had a super big effect on accuracy of model. My final model first extracts the average winrate and pickrate of each champion using data from the "players" database. It takes in the 5 champions that a team picked and maps each champion to it's corresponding winrate and pickrate. Then, it averages out both values, resulting in two numbers that represent how often (on average) these champions are picked and played. I implemented this with a custom function and a FunctionTransformer().
+-"*Average champ winrate and average champ pickrate*:" Two quantitative variables. I knew from the beginning I wanted to include the champion picks into the prediction because they were a key element of the game that can heavily influence whether a team wins or not. Picking strong champions and creating synergistic team compositions should set a team up for success. Even though in theory, this should justify using champion picks as a feature, in practice, they weren't as effective as I'd hoped. I greatly struggled in encoding champion pick data efficiently and getting meaningful results.
 
--"Team winrate:" Another quantitative variable similar to the one above. I used data from the "teams" dataframe to create a list of winrates for each team that competed in 2024. Then, I mapped the "teamname" column to its corresponding winrate using a custom function and a FunctionTransformer(). I thought this feature would help predict the outcome of a match because if a team historically performs better than other teams, they're more likely to win any given match.
+In the end, I don't think that any of the numorous encoding methods I tried (such has OneHotEncoding() every champion - which led to 160+ columns) had a super big effect on accuracy of model. My final model first extracts the average winrate and pickrate of each champion using data from the "players" database. It takes in the 5 champions that a team picked and maps each champion to it's corresponding winrate and pickrate. Then, it averages out both values, resulting in two numbers that represent how often (on average) these champions are picked and played. I implemented this with a custom function and a FunctionTransformer().
 
-To find the best hyperparameters for the random forest, I used a GridSearchCV with 5-fold cross validation
+-"*Team winrate*:" Another quantitative variable similar to the one above. I used data from the "teams" dataframe to create a list of winrates for each team that competed in 2024. Then, I mapped the "teamname" column to its corresponding winrate using a custom function and a FunctionTransformer(). I thought this feature would help predict the outcome of a match because if a team historically performs better than other teams, they're more likely to win any given match.
+
+To find the best hyperparameters for the random forest, I used a GridSearchCV with 5-fold cross validation.
+
+
 The hyperparameters that worked the best were:
+
     'model__max_depth': 10
+
     'model__min_samples_leaf': 15
+
     'model__min_samples_split': 20
+
     'model__n_estimators': 150
 
 
