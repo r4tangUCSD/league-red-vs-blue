@@ -66,7 +66,12 @@ In this scatterplot I plot each champion's pickrate with their banrate. Before, 
 
 ***Interesting Aggregates***
 
-The arena that League of Legends matches takes place in, "Summoner's Rift," is mostly symmetrical; however, there are a few key differences that could give one side a hypothetical advantage over another. My good friend Parker, a league fanatic, tells me that the Blue side, which starts in the southwest portion of the arena, has a better chance of winning compared to the Red side, which starts in the north eastern corner.
+The arena that League of Legends matches takes place in, "Summoner's Rift," is mostly symmetrical; however, there are a few key differences that could give one side a hypothetical advantage over another. My good friend Parker, an avid League of Legends fan, tells me that the Blue side, which starts in the southwest portion of the arena, has a better chance of winning compared to the Red side, which starts in the northeastern corner. 
+
+To explore this, I group the data by the "side" column and see if there's truth to my friend's rumor:
+
+It turns out he's right: the Blue side gets (on average), more kills, more gold, and has an overall higher winrate. I explore this further in Part 4.
+
 
 ---
 
