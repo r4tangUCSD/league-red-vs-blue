@@ -175,7 +175,7 @@ Alternate Hypothesis: The distribution of "league" column is different when gold
 Observed TVD: 0.98498801564274
 P-value: 0.0
 
-We reject the null hypothesis, since the p-value < 0.05. It is likely unlikely that every league has the same amount of missing values in the goldat10 column.
+We reject the null hypothesis, since the p-value < 0.05. It is likely unlikely that every league has the same amount of missing values in the goldat10 column. Goldat10 is MAR on 'league.'
 
 *Result*
 
@@ -301,5 +301,5 @@ I perform a permutation test because I want to see if the model predicts as thou
 
 P-value: 0.106
 
-We fail to reject the null hypothesis.
+We fail to reject the null hypothesis. It seems that the final model performs fairly between matches from different tiers of professional play.
 
