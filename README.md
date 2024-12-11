@@ -130,6 +130,13 @@ Null Hypothesis: The distribution of the "league" column is the same regardless 
 
 Alternate Hypothesis: The distribution of "league" column is different when goldat10 is missing compared to when it's not missing.
 
+<iframe
+  src="assets/missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 Observed TVD: 0.98498801564274
 P-value: 0.0
 
