@@ -59,6 +59,13 @@ Below are the heads of both the "players" dataframe and the "teams" dataframe.
 
 I performed univariate analysis on the distributions of a few columns. For example, here's a historgram I created that shows the the distribution of total kills. This data is from the "teams" dataframe, so each value represents the cumulative number of kills all 5 players on a team got.
 
+<iframe
+  src="assets/kill_histogram.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 We see that this distribution is unimodal and looks relatively normal. It is slightly right skewed, which makes sense because if a match lasts a very long time, players will have more kills at the end.
 
 ***Bivariate Analysis***
