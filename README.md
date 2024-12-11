@@ -57,23 +57,58 @@ Below are the heads of both the "players" dataframe and the "teams" dataframe.
 
 *teams*
 
-| gameid             | teamname    | side   |   result | pick1        | pick2    | pick3   | pick4   | pick5      | ban1     | ban2     | ban3         | ban4      | ban5      |   goldat10 |   killsat10 |   totalgold |   kills |   gamelength | league   | datacompleteness   | picks                                              |
-|:-------------------|:------------|:-------|---------:|:-------------|:---------|:--------|:--------|:-----------|:---------|:---------|:-------------|:----------|:----------|-----------:|------------:|------------:|--------:|-------------:|:---------|:-------------------|:---------------------------------------------------|
-| 10660-10660_game_1 | LNG Esports | Blue   |        0 | Kalista      | Senna    | Orianna | Maokai  | Aatrox     | Akali    | Nocturne | K\'Sante      | Lee Sin   | Wukong    |        nan |         nan |       49907 |       3 |         1886 | DCup     | partial            | [\'Kalista\' \'Senna\' \'Orianna\' \'Maokai\' \'Aatrox\']    |
-| 10660-10660_game_1 | Rare Atom   | Red    |        1 | Renata Glasc | Varus    | LeBlanc | Rell    | Rumble     | Poppy    | Ashe     | Neeko        | Vi        | Jarvan IV |        nan |         nan |       61737 |      16 |         1886 | DCup     | partial            | [\'Renata Glasc\' \'Varus\' \'LeBlanc\' \'Rell\' \'Rumble\'] |
-| 10660-10660_game_2 | LNG Esports | Blue   |        0 | Neeko        | Bel\'Veth | Kennen  | Senna   | Tahm Kench | Nocturne | Udyr     | Renata Glasc | Nautilus  | Lee Sin   |        nan |         nan |       49552 |       3 |         1911 | DCup     | partial            | [\'Neeko\' "Bel\'Veth" \'Kennen\' \'Senna\' \'Tahm Kench\'] |
-| 10660-10660_game_2 | Rare Atom   | Red    |        1 | Kalista      | Jax      | LeBlanc | Rell    | Jarvan IV  | Poppy    | Ashe     | Rumble       | Tristana  | Lucian    |        nan |         nan |       63623 |      17 |         1911 | DCup     | partial            | [\'Kalista\' \'Jax\' \'LeBlanc\' \'Rell\' \'Jarvan IV\']     |
-| 10660-10660_game_3 | LNG Esports | Blue   |        1 | Neeko        | Caitlyn  | Lux     | Jax     | Bel\'Veth   | Rell     | Nocturne | Tristana     | Jarvan IV | Rumble    |        nan |         nan |       51091 |      21 |         1324 | DCup     | partial            | [\'Neeko\' \'Caitlyn\' \'Lux\' \'Jax\' "Bel\'Veth"]         |
+| gameid             | teamname    | side   |   result | pick1        | pick2    | pick3   |
+|:-------------------|:------------|:-------|---------:|:-------------|:---------|:--------|
+| 10660-10660_game_1 | LNG Esports | Blue   |        0 | Kalista      | Senna    | Orianna |
+| 10660-10660_game_1 | Rare Atom   | Red    |        1 | Renata Glasc | Varus    | LeBlanc |
+| 10660-10660_game_2 | LNG Esports | Blue   |        0 | Neeko        | Bel'Veth | Kennen  |
+| 10660-10660_game_2 | Rare Atom   | Red    |        1 | Kalista      | Jax      | LeBlanc |
+| 10660-10660_game_3 | LNG Esports | Blue   |        1 | Neeko        | Caitlyn  | Lux     |
+
+| pick4   | pick5      | ban1     | ban2     | ban3         | ban4      | ban5      |
+|:--------|:-----------|:---------|:---------|:-------------|:----------|:----------|
+| Maokai  | Aatrox     | Akali    | Nocturne | K'Sante      | Lee Sin   | Wukong    |
+| Rell    | Rumble     | Poppy    | Ashe     | Neeko        | Vi        | Jarvan IV |
+| Senna   | Tahm Kench | Nocturne | Udyr     | Renata Glasc | Nautilus  | Lee Sin   |
+| Rell    | Jarvan IV  | Poppy    | Ashe     | Rumble       | Tristana  | Lucian    |
+| Jax     | Bel'Veth   | Rell     | Nocturne | Tristana     | Jarvan IV | Rumble    |
+
+| goldat10 | killsat10 | totalgold | kills | gamelength | league   | datacompleteness   |
+|----------|-----------|-----------|-------|------------|:---------|:-------------------|
+| nan      | nan       | 49907     | 3     | 1886       | DCup     | partial            |
+| nan      | nan       | 61737     | 16    | 1886       | DCup     | partial            |
+| nan      | nan       | 49552     | 3     | 1911       | DCup     | partial            |
+| nan      | nan       | 63623     | 17    | 1911       | DCup     | partial            |
+| nan      | nan       | 51091     | 21    | 1324       | DCup     | partial            |
+
+| picks                                              |
+|:---------------------------------------------------|
+| ['Kalista' 'Senna' 'Orianna' 'Maokai' 'Aatrox']    |
+| ['Renata Glasc' 'Varus' 'LeBlanc' 'Rell' 'Rumble'] |
+| ['Neeko' "Bel'Veth" 'Kennen' 'Senna' 'Tahm Kench'] |
+| ['Kalista' 'Jax' 'LeBlanc' 'Rell' 'Jarvan IV']     |
+| ['Neeko' 'Caitlyn' 'Lux' 'Jax' "Bel'Veth"]         |
+
 
 *players*
 
-| gameid             | teamname    | side   | playername   |   result | champion   |   goldat10 |   killsat10 |   totalgold |   kills |   gamelength | league   | datacompleteness   |
-|:-------------------|:------------|:-------|:-------------|---------:|:-----------|-----------:|------------:|------------:|--------:|-------------:|:---------|:-------------------|
-| 10660-10660_game_1 | LNG Esports | Blue   | Zika         |        0 | Aatrox     |        nan |         nan |       11083 |       1 |         1886 | DCup     | partial            |
-| 10660-10660_game_1 | LNG Esports | Blue   | Weiwei       |        0 | Maokai     |        nan |         nan |        8636 |       0 |         1886 | DCup     | partial            |
-| 10660-10660_game_1 | LNG Esports | Blue   | Scout        |        0 | Orianna    |        nan |         nan |       10743 |       0 |         1886 | DCup     | partial            |
-| 10660-10660_game_1 | LNG Esports | Blue   | GALA         |        0 | Kalista    |        nan |         nan |       12224 |       2 |         1886 | DCup     | partial            |
-| 10660-10660_game_1 | LNG Esports | Blue   | Mark         |        0 | Senna      |        nan |         nan |        7221 |       0 |         1886 | DCup     | partial            |s
+| gameid             | teamname    | side   | playername   |   result | champion   |
+|:-------------------|:------------|:-------|:-------------|---------:|:-----------|
+| 10660-10660_game_1 | LNG Esports | Blue   | Zika         |        0 | Aatrox     |
+| 10660-10660_game_1 | LNG Esports | Blue   | Weiwei       |        0 | Maokai     |
+| 10660-10660_game_1 | LNG Esports | Blue   | Scout        |        0 | Orianna    |
+| 10660-10660_game_1 | LNG Esports | Blue   | GALA         |        0 | Kalista    |
+| 10660-10660_game_1 | LNG Esports | Blue   | Mark         |        0 | Senna      |
+
+| goldat10 | killsat10 | totalgold | kills | gamelength | league   | datacompleteness   |
+|----------|-----------|-----------|-------|------------|:---------|:-------------------|
+| nan      | nan       | 11083     | 1     | 1886       | DCup     | partial            |
+| nan      | nan       | 8636      | 0     | 1886       | DCup     | partial            |
+| nan      | nan       | 10743     | 0     | 1886       | DCup     | partial            |
+| nan      | nan       | 12224     | 2     | 1886       | DCup     | partial            |
+| nan      | nan       | 7221      | 0     | 1886       | DCup     | partial            |
+
+
 
 ***Univariate Analysis***
 
