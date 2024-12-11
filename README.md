@@ -79,23 +79,22 @@ It turns out he's right: the Blue side gets (on average), more kills, more gold,
 
 ***NMAR Analysis***
 
-State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term “NMAR.”
+I believe that the columns ban1 - ban5 are all Not Missing At Random (NMAR) because a player isn't required to ban a champion. Though the vast majority of players do ban a champion, for whatever reason some players may choose not to select a champion to ban. The reason why a player would do this isn't clear, because there isn't really any situation where a player would be better off not banning a champion rather than banning one. 
 
 ***Missingness Dependency***
 
-Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
-• The distribution of column 
-Y
- when column 
-X
- is missing and the distribution of column 
-Y
- when column 
-X
- is not missing, as was done in Lecture 8.
-• The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic.
+For missingness dependency, I test the "goldat10" column. This column is always NaN when "killsat10" is also NaN, so I'm testing both columns at once. I test this column against "gamelength", "league", "deaths", and "result."
 
-Here's what a Markdown table looks like. Note that the code for this table was generated _automatically_ from a DataFrame, using
+*League*
+
+Null Hypothesis: The distribution of the "league" column is the same regardless of whether goldat10 is missing or not.
+
+Alternate Hypothesis: The distribution of "league" column is different when goldat10 is missing compared to when it's not missing.
+
+Observed TVD: 0.98498801564274
+P-value: 0.0
+
+We reject the null hypothesis, since the p-value < 0.5. It is likely unlikely that every league has the same amount of missing values in the goldat10 column.
 
 ```py
 print(counts[['Quarter', 'Count']].head().to_markdown(index=False))
