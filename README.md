@@ -65,12 +65,18 @@ I performed univariate analysis on the distributions of a few columns. For examp
   height="600"
   frameborder="0"
 ></iframe>
-
 We see that this distribution is unimodal and looks relatively normal. It is slightly right skewed, which makes sense because if a match lasts a very long time, players will have more kills at the end.
 
 ***Bivariate Analysis***
 
 In this scatterplot I plot each champion's pickrate with their banrate. Before, I theorized that if a champion is very powerful, it will have both a high pickrate (because teams want to uitilize this champion) and a high banrate (because teams don't want to deal with a powerful opponent). Here we see that banrate and pickrate are, indeed, positively correlated.
+
+<iframe
+  src="assets/banrate_pickrate_scatter.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ***Interesting Aggregates***
 
